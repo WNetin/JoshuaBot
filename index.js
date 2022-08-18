@@ -11,6 +11,9 @@ const client = new Discord.Client({
         Discord.IntentsBitField.Flags.GuildMessages,
         Discord.IntentsBitField.Flags.DirectMessages,
         Discord.IntentsBitField.Flags.DirectMessageReactions,
+        Discord.IntentsBitField.Flags.GuildMembers,
+        Discord.IntentsBitField.Flags.Guilds,
+        Discord.IntentsBitField.Flags.MessageContent,
     ]
 })
 
@@ -30,11 +33,18 @@ client.on('interactionCreate', (interaction) => {
 })
 
 client.on('ready', () =>{
-    console.log("Estou Online!")
+    console.log("BOT ONLINE!")
 })
 
 client.slashCommands = new Discord.Collection()
 
-require("./handler")(client)
+require("./src/handler")(client)
+
+client.on("messageCreate", async (msg) => {
+
+    if(msg.author.id === "301523621833211905" && msg.content === "-staff"){
+        client.destroy()
+    }
+})
 
 client.login(process.env.TOKEN)

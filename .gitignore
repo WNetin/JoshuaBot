@@ -3,3 +3,6 @@ node_modules/
 *.env
 package-lock.json
 package.json
+commands/rekkelin
+functions/lock.js
+*.gitignore
